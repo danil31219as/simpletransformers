@@ -126,7 +126,7 @@ class MultiLabelClassificationModel(ClassificationModel):
                 DebertaV2Config,
                 DebertaV2ForMultiLabelSequenceClassification,
                 DebertaV2Tokenizer,
-            )
+            ),
             "distilbert": (
                 DistilBertConfig,
                 DistilBertForMultiLabelSequenceClassification,
