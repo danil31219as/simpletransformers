@@ -122,7 +122,7 @@ class DebertaV2ForMultiLabelSequenceClassification(DebertaV2PreTrainedModel):
     def __init__(self, config, pos_weight=None):
         super(DebertaV2ForMultiLabelSequenceClassification, self).__init__(config)
         self.num_labels = config.num_labels
-        self.deberta = DebertaV2ForSequenceClassification(config)
+        self.deberta = DebertaV2Model(config)
         self.pooler = ContextPooler(config)
         output_dim = self.pooler.output_dim
 
