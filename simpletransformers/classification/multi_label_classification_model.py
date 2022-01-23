@@ -230,11 +230,13 @@ class MultiLabelClassificationModel(ClassificationModel):
                     model_name,
                     config=self.config,
                     pos_weight=torch.Tensor(self.pos_weight).to(self.device),
+                    ignore_mismatched_sizes=True,
                     **kwargs,
+                    
                 )
             else:
                 self.model = model_class.from_pretrained(
-                    model_name, config=self.config, **kwargs
+                    model_name, config=self.config,ignore_mismatched_sizes=True, **kwargs
                 )
         else:
             quantized_weights = torch.load(
@@ -245,11 +247,12 @@ class MultiLabelClassificationModel(ClassificationModel):
                     None,
                     config=self.config,
                     state_dict=quantized_weights,
+                    ignore_mismatched_sizes=True,
                     weight=torch.Tensor(self.pos_weight).to(self.device),
                 )
             else:
                 self.model = model_class.from_pretrained(
-                    None, config=self.config, state_dict=quantized_weights
+                    None, config=self.config, state_dict=quantized_weights, ignore_mismatched_sizes=True,
                 )
 
         if self.args.dynamic_quantize:
