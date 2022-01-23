@@ -132,7 +132,6 @@ class DebertaV2ForMultiLabelSequenceClassification(DebertaV2PreTrainedModel):
         attention_mask=None,
         token_type_ids=None,
         position_ids=None,
-        head_mask=None,
         labels=None,
     ):
         outputs = self.bert(
@@ -140,7 +139,6 @@ class DebertaV2ForMultiLabelSequenceClassification(DebertaV2PreTrainedModel):
             attention_mask=attention_mask,
             token_type_ids=token_type_ids,
             position_ids=position_ids,
-            head_mask=head_mask,
         )
 
         pooled_output = outputs[1]
