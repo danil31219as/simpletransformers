@@ -133,6 +133,7 @@ class DebertaV2ForMultiLabelSequenceClassification(DebertaV2PreTrainedModel):
         token_type_ids=None,
         position_ids=None,
         labels=None,
+        head_mask=None,
     ):
         outputs = self.bert(
             input_ids,
