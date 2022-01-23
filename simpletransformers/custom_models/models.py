@@ -15,7 +15,8 @@ from transformers import (
     XLNetModel,
     XLNetPreTrainedModel,
     DebertaV2Model,
-    DebertaV2PreTrainedModel
+    DebertaV2PreTrainedModel,
+    DebertaV2ForSequenceClassification
 )
 from transformers.modeling_utils import PreTrainedModel, SequenceSummary
 from transformers.models.albert.modeling_albert import (
@@ -119,7 +120,7 @@ class DebertaV2ForMultiLabelSequenceClassification(DebertaV2PreTrainedModel):
     def __init__(self, config, pos_weight=None):
         super(DebertaV2ForMultiLabelSequenceClassification, self).__init__(config)
         self.num_labels = config.num_labels
-        self.bert = DebertaV2Model(config)
+        self.bert = DebertaV2ForSequenceClassification(config)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
         self.classifier = nn.Linear(config.hidden_size, self.config.num_labels)
         self.pos_weight = pos_weight
@@ -142,14 +143,14 @@ class DebertaV2ForMultiLabelSequenceClassification(DebertaV2PreTrainedModel):
             position_ids=position_ids,
         )
 
-        pooled_output = outputs[1]
+#         pooled_output = outputs[1]
 
-        pooled_output = self.dropout(pooled_output)
-        logits = self.classifier(pooled_output)
+#         pooled_output = self.dropout(pooled_output)
+#         logits = self.classifier(pooled_output)
 
-        outputs = (logits,) + outputs[
-            2:
-        ]  # add hidden states and attention if they are here
+#         outputs = (logits,) + outputs[
+#             2:
+#         ]  # add hidden states and attention if they are here
 
         if labels is not None:
             loss_fct = BCEWithLogitsLoss(pos_weight=self.pos_weight)
