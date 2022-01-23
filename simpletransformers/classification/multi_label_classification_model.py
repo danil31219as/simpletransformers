@@ -122,6 +122,11 @@ class MultiLabelClassificationModel(ClassificationModel):
                 CamembertForMultiLabelSequenceClassification,
                 CamembertTokenizer,
             ),
+            "debertav2": (
+                DebertaV2Config,
+                DebertaV2ForMultiLabelSequenceClassification,
+                DebertaV2Tokenizer,
+            )
             "distilbert": (
                 DistilBertConfig,
                 DistilBertForMultiLabelSequenceClassification,
