@@ -58,7 +58,7 @@ from transformers.models.xlm_roberta.configuration_xlm_roberta import XLMRoberta
 from transformers.models.xlm_roberta.modeling_xlm_roberta import (
     XLM_ROBERTA_PRETRAINED_MODEL_ARCHIVE_LIST,
 )
-
+from transformers.activations import ACT2FN
 class StableDropout(nn.Module):
     """
     Optimized dropout module for stabilizing the training
