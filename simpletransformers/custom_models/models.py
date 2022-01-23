@@ -59,6 +59,29 @@ from transformers.models.xlm_roberta.modeling_xlm_roberta import (
     XLM_ROBERTA_PRETRAINED_MODEL_ARCHIVE_LIST,
 )
 from transformers.activations import ACT2FN
+
+class XDropout(torch.autograd.Function):
+    """Optimized dropout function to save computation and memory by using mask operation instead of multiplication."""
+
+    @staticmethod
+    def forward(ctx, input, local_ctx):
+        mask, dropout = get_mask(input, local_ctx)
+        ctx.scale = 1.0 / (1 - dropout)
+        if dropout > 0:
+            ctx.save_for_backward(mask)
+            return input.masked_fill(mask, 0) * ctx.scale
+        else:
+            return input
+
+    @staticmethod
+    def backward(ctx, grad_output):
+        if ctx.scale > 1:
+            (mask,) = ctx.saved_tensors
+            return grad_output.masked_fill(mask, 0) * ctx.scale, None
+        else:
+            return grad_output, None
+
+
 class StableDropout(nn.Module):
     """
     Optimized dropout module for stabilizing the training
