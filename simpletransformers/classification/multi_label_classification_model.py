@@ -34,6 +34,8 @@ from transformers import (
     XLMTokenizer,
     XLNetConfig,
     XLNetTokenizer,
+    DebertaV2Config,
+    DebertaV2Tokenizer
 )
 
 from simpletransformers.classification import ClassificationModel
@@ -54,6 +56,7 @@ from simpletransformers.custom_models.models import (
     XLMForMultiLabelSequenceClassification,
     XLMRobertaForMultiLabelSequenceClassification,
     XLNetForMultiLabelSequenceClassification,
+    DebertaV2ForMultiLabelSequenceClassification
 )
 
 try:
