@@ -155,7 +155,7 @@ class MultiLabelClassificationModel(ClassificationModel):
             "roberta": (
                 RobertaConfig,
                 RobertaForMultiLabelSequenceClassification,
-                RobertaTokenizer,
+                AutoTokenizer,
             ),
             "xlm": (XLMConfig, XLMForMultiLabelSequenceClassification, XLMTokenizer),
             "xlmroberta": (
