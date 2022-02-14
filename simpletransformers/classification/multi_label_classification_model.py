@@ -35,7 +35,8 @@ from transformers import (
     XLNetConfig,
     XLNetTokenizer,
     DebertaV2Config,
-    DebertaV2Tokenizer
+    DebertaV2Tokenizer,
+    AutoTokenizer,
 )
 
 from simpletransformers.classification import ClassificationModel
