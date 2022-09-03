@@ -868,6 +868,8 @@ class ClassificationModel:
                 desc=f"Running Epoch {epoch_number} of {args.num_train_epochs}",
                 disable=args.silent,
                 mininterval=0,
+                position=0, 
+                leave=True
             )
             for step, batch in enumerate(batch_iterator):
                 if steps_trained_in_current_epoch > 0:
@@ -1467,6 +1469,7 @@ class ClassificationModel:
                 eval_dataloader,
                 disable=args.silent or silent,
                 desc="Running Evaluation",
+                position=0, leave=True
             )
         ):
             # batch = tuple(t.to(device) for t in batch)
