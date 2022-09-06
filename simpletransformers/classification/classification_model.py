@@ -1445,7 +1445,7 @@ class ClassificationModel:
 
         eval_sampler = SequentialSampler(eval_dataset)
         eval_dataloader = DataLoader(
-            eval_dataset, sampler=eval_sampler, batch_size=args.eval_batch_size
+            eval_dataset, sampler=eval_sampler, batch_size=args.eval_batch_size, num_workers=self.args.dataloader_num_workers
         )
 
         if args.n_gpu > 1:
